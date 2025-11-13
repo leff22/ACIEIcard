@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 3002;
 // Configuração CORS para produção
 const corsOptions = {
   origin: process.env.NODE_ENV === 'production' 
-    ? ['https://traei3h5kaag.vercel.app', 'https://acieicard.vercel.app']
+    ? ['https://aciei-card.vercel.app', 'https://traei3h5kaag.vercel.app', 'https://acieicard.vercel.app']
     : 'http://localhost:3000',
   credentials: true,
   optionsSuccessStatus: 200
