@@ -1,7 +1,12 @@
 {
   "version": 2,
-  "name": "acie-card",
+  "name": "aciei-card",
   "alias": ["aciei-card.vercel.app"],
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "installCommand": "npm install",
+  "devCommand": "npm run dev",
+  "framework": "vite",
   "rewrites": [
     {
       "source": "/(.*)",
@@ -26,5 +31,8 @@
         }
       ]
     }
-  ]
+  ],
+  "env": {
+    "VITE_API_URL": "https://acieicard-backend.onrender.com"
+  }
 }
