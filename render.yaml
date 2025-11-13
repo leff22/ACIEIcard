@@ -1,0 +1,8 @@
+# Configuração do Render
+
+buildCommand: cd api && npm install
+startCommand: cd api && npm start
+
+# Variáveis de ambiente (serão configuradas no dashboard do Render)
+NODE_ENV: production
+PORT: 10000

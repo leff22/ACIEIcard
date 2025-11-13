@@ -1,0 +1,27 @@
+{
+  "name": "acieicard-backend",
+  "version": "1.0.0",
+  "description": "Backend API para ACIEIcard - Sistema de Cartão Empresarial",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "build": "npm install"
+  },
+  "dependencies": {
+    "express": "^4.21.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "acieicard",
+    "api",
+    "express",
+    "cartao-empresarial"
+  ],
+  "author": "ACIEI",
+  "license": "MIT"
+}
