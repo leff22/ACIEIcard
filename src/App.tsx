@@ -10,8 +10,19 @@ import ConveniadoDashboard from './pages/conveniado/Dashboard'
 import BeneficiarioLogin from './pages/beneficiario/Login'
 import BeneficiarioDashboard from './pages/beneficiario/Dashboard'
 import PagamentoNFC from './pages/beneficiario/PagamentoNFC'
+import { useEffect } from 'react'
 
 function App() {
+  useEffect(() => {
+    // Debug inicial
+    console.log('🚀 ACIEIcard App iniciado')
+    console.log('📍 Environment:', {
+      PROD: import.meta.env.PROD,
+      DEV: import.meta.env.DEV,
+      VITE_API_URL: import.meta.env.VITE_API_URL
+    })
+  }, [])
+
   return (
     <>
       <Router>
