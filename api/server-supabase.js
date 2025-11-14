@@ -58,7 +58,11 @@ app.get('/health', (req, res) => {
 app.post('/api/auth/login', async (req, res) => {
   const { cpf_cnpj, senha, tipo_usuario } = req.body;
   
-  console.log('Tentativa de login:', { cpf_cnpj, tipo_usuario });
+  console.log('=== DADOS RECEBIDOS ===');
+  console.log('cpf_cnpj:', cpf_cnpj);
+  console.log('senha:', senha ? '***' : 'vazia');
+  console.log('tipo_usuario:', tipo_usuario);
+  console.log('========================');
   
   try {
     let user = null;
@@ -67,12 +71,14 @@ app.post('/api/auth/login', async (req, res) => {
     // Buscar em diferentes tabelas baseado no tipo de usuário
     switch (tipo_usuario) {
       case 'admin':
-        const { data: admin } = await supabase
+        console.log('Buscando admin por email:', cpf_cnpj);
+        const { data: admin, error: adminError } = await supabase
           .from('administradores')
           .select('*')
           .eq('email', cpf_cnpj)
           .eq('status', 'ativo')
           .single();
+        console.log('Resultado admin:', { admin, adminError });
         user = admin;
         userType = 'admin';
         break;
@@ -112,13 +118,22 @@ app.post('/api/auth/login', async (req, res) => {
     }
     
     if (!user) {
+      console.log('❌ Usuário não encontrado para:', cpf_cnpj, 'tipo:', tipo_usuario);
       return res.status(401).json({ 
-        error: 'Usuário não encontrado ou inativo' 
+        error: 'CPF/CNPJ incorreto ou usuário inativo' 
       });
     }
     
+    console.log('✅ Usuário encontrado:', user.nome || user.razao_social || user.nome_fantasia);
+    
     // Verificar senha usando bcrypt
+    console.log('🔑 Verificando senha...');
+    console.log('Hash no banco:', user.password_hash);
+    console.log('Senha fornecida:', senha);
+    
     const isPasswordValid = await bcrypt.compare(senha, user.password_hash);
+    console.log('Senha válida:', isPasswordValid);
+    
     if (!isPasswordValid) {
       return res.status(401).json({ 
         error: 'Senha incorreta' 
