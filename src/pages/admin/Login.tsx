@@ -19,6 +19,7 @@ export default function AdminLogin() {
       })
     } catch (error) {
       console.error('Erro no login:', error)
+      alert('Erro ao fazer login: ' + (error as Error).message)
     }
   }
 
