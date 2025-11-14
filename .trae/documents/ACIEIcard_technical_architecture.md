@@ -34,57 +34,64 @@ graph TD
 
 ## 2. Descrição das Tecnologias
 
-- **Frontend**: React@18 + TypeScript + Vite + Tailwind CSS@3
-- **Backend**: Node.js@20 + Express@4 + TypeScript
-- **Banco de Dados**: Supabase (PostgreSQL@15)
-- **Autenticação**: Supabase Auth com JWT
-- **Storage**: Supabase Storage para arquivos
-- **Aplicativo Móvel**: React Native + Expo
-- **Integração NFC**: React Native NFC Manager
-- **Deploy**: Vercel (frontend), Railway (backend), Supabase (database)
+* **Frontend**: React\@18 + TypeScript + Vite + Tailwind CSS\@3
+
+* **Backend**: Node.js\@20 + Express\@4 + TypeScript
+
+* **Banco de Dados**: Supabase (PostgreSQL\@15)
+
+* **Autenticação**: Supabase Auth com JWT
+
+* **Storage**: Supabase Storage para arquivos
+
+* **Aplicativo Móvel**: React Native + Expo
+
+* **Integração NFC**: React Native NFC Manager
+
+* **Deploy**: Vercel (frontend), Railway (backend), Supabase (database)
 
 ## 3. Definições de Rotas
 
 ### 3.1 Rotas Frontend (React)
 
-| Rota | Finalidade |
-|------|------------|
-| / | Landing page institucional |
-| /admin/login | Login do administrador ACIEI |
-| /admin/dashboard | Dashboard administrativo |
-| /admin/empresas | Gestão de empresas associadas |
-| /admin/conveniados | Gestão de estabelecimentos conveniados |
-| /empresa/login | Login para empresas associadas |
-| /empresa/dashboard | Dashboard empresarial |
-| /empresa/beneficiarios | Cadastro e gestão de beneficiários |
-| /empresa/limites | Configuração de limites por beneficiário |
-| /empresa/extrato | Extrato e relatórios da empresa |
-| /conveniado/login | Login para estabelecimentos conveniados |
-| /conveniado/dashboard | Dashboard de vendas |
-| /conveniado/receber | Interface para recebimento de pagamentos |
-| /conveniado/vendas | Histórico de vendas realizadas |
+| Rota                   | Finalidade                               |
+| ---------------------- | ---------------------------------------- |
+| /                      | Landing page institucional               |
+| /admin/login           | Login do administrador ACIEI             |
+| /admin/dashboard       | Dashboard administrativo                 |
+| /admin/empresas        | Gestão de empresas associadas            |
+| /admin/conveniados     | Gestão de estabelecimentos conveniados   |
+| /empresa/login         | Login para empresas associadas           |
+| /empresa/dashboard     | Dashboard empresarial                    |
+| /empresa/beneficiarios | Cadastro e gestão de beneficiários       |
+| /empresa/limites       | Configuração de limites por beneficiário |
+| /empresa/extrato       | Extrato e relatórios da empresa          |
+| /conveniado/login      | Login para estabelecimentos conveniados  |
+| /conveniado/dashboard  | Dashboard de vendas                      |
+| /conveniado/receber    | Interface para recebimento de pagamentos |
+| /conveniado/vendas     | Histórico de vendas realizadas           |
 
 ### 3.2 Rotas API Backend
 
-| Rota | Método | Finalidade |
-|------|--------|------------|
-| /api/auth/login | POST | Autenticação de usuários |
-| /api/auth/logout | POST | Logout do sistema |
-| /api/auth/refresh | POST | Renovação de token JWT |
-| /api/empresas | GET | Listar empresas associadas |
-| /api/empresas | POST | Cadastrar nova empresa |
-| /api/empresas/:id | PUT | Atualizar dados da empresa |
-| /api/beneficiarios | GET | Listar beneficiários |
-| /api/beneficiarios | POST | Cadastrar beneficiário |
-| /api/beneficiarios/:id | PUT | Atualizar beneficiário |
-| /api/pagamentos | POST | Processar pagamento NFC |
-| /api/pagamentos/:id | GET | Consultar pagamento |
-| /api/saldo/:beneficiarioId | GET | Consultar saldo disponível |
-| /api/extrato/:beneficiarioId | GET | Obter extrato de transações |
-| /api/cartoes | POST | Emitir cartão físico |
-| /api/cartoes/:id | PUT | Ativar/bloquear cartão |
-| /api/conveniados | GET | Listar estabelecimentos |
-| /api/conveniados/:id/vendas | GET | Vendas por conveniado |
+| Rota                         | Método | Finalidade                  |
+| ---------------------------- | ------ | --------------------------- |
+| /api/auth/login              | POST   | Autenticação de usuários    |
+| /api/auth/logout             | POST   | Logout do sistema           |
+| /api/auth/refresh            | POST   | Renovação de token JWT      |
+| /api/empresas                | GET    | Listar empresas associadas  |
+| /api/empresas                | POST   | Cadastrar nova empresa      |
+| /api/empresas/:id            | PUT    | Atualizar dados da empresa  |
+| /api/beneficiarios           | GET    | Listar beneficiários        |
+| /api/beneficiarios           | POST   | Cadastrar beneficiário      |
+| /api/beneficiarios/:id       | PUT    | Atualizar beneficiário      |
+| /api/pagamentos              | POST   | Processar pagamento NFC     |
+| /api/pagamentos/:id          | GET    | Consultar pagamento         |
+| /api/saldo/:beneficiarioId   | GET    | Consultar saldo disponível  |
+| /api/extrato/:beneficiarioId | GET    | Obter extrato de transações |
+| /api/cartoes                 | POST   | Emitir cartão físico        |
+| /api/cartoes/:id             | PUT    | Ativar/bloquear cartão      |
+| /api/conveniados             | GET    | Listar estabelecimentos     |
+| /api/conveniados/:id/vendas  | GET    | Vendas por conveniado       |
 
 ## 4. Definições de API
 
@@ -93,6 +100,7 @@ graph TD
 **POST /api/auth/login**
 
 Request:
+
 ```json
 {
   "cpf_cnpj": "12345678900",
@@ -102,6 +110,7 @@ Request:
 ```
 
 Response:
+
 ```json
 {
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
@@ -119,6 +128,7 @@ Response:
 **POST /api/pagamentos**
 
 Request:
+
 ```json
 {
   "beneficiario_id": "uuid-456",
@@ -134,6 +144,7 @@ Request:
 ```
 
 Response:
+
 ```json
 {
   "transacao_id": "trans-789",
@@ -149,6 +160,7 @@ Response:
 **GET /api/beneficiarios/:empresaId**
 
 Response:
+
 ```json
 {
   "beneficiarios": [
@@ -295,6 +307,7 @@ erDiagram
 ### 6.2 Definições DDL
 
 **Tabela Empresas:**
+
 ```sql
 CREATE TABLE empresas (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -317,6 +330,7 @@ CREATE INDEX idx_empresas_status ON empresas(status);
 ```
 
 **Tabela Beneficiarios:**
+
 ```sql
 CREATE TABLE beneficiarios (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -340,6 +354,7 @@ CREATE INDEX idx_beneficiarios_cpf ON beneficiarios(cpf);
 ```
 
 **Tabela Transacoes:**
+
 ```sql
 CREATE TABLE transacoes (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -376,22 +391,38 @@ GRANT ALL PRIVILEGES ON recargas TO authenticated;
 ## 7. Segurança e Performance
 
 ### 7.1 Segurança
-- Autenticação JWT com tokens de 24 horas
-- Criptografia de senhas com bcrypt (salt rounds: 12)
-- Rate limiting: 100 requisições por minuto por IP
-- CORS configurado para domínios específicos
-- Validação de entrada com Joi/Yup
-- Logs de auditoria para todas as transações
+
+* Autenticação JWT com tokens de 24 horas
+
+* Criptografia de senhas com bcrypt (salt rounds: 12)
+
+* Rate limiting: 100 requisições por minuto por IP
+
+* CORS configurado para domínios específicos
+
+* Validação de entrada com Joi/Yup
+
+* Logs de auditoria para todas as transações
 
 ### 7.2 Performance
-- Cache Redis para consultas frequentes (saldo, limites)
-- Índices otimizados em campos de busca
-- Paginação em listagens (máx. 50 itens por página)
-- Compressão gzip nas respostas da API
-- CDN para assets estáticos e imagens
+
+* Cache Redis para consultas frequentes (saldo, limites)
+
+* Índices otimizados em campos de busca
+
+* Paginação em listagens (máx. 50 itens por página)
+
+* Compressão gzip nas respostas da API
+
+* CDN para assets estáticos e imagens
 
 ### 7.3 Escalabilidade
-- Arquitetura stateless para horizontal scaling
-- Load balancer para distribuição de carga
-- Supabase com auto-scaling de leitura
-- Filas para processamento assíncrono (Bull/Redis)
+
+* Arquitetura stateless para horizontal scaling
+
+* Load balancer para distribuição de carga
+
+* Supabase com auto-scaling de leitura
+
+* Filas para processamento assíncrono (Bull/Redis)
+

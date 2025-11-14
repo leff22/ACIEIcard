@@ -1,31 +1,24 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { Building2, Eye, EyeOff } from 'lucide-react'
-import { toast } from 'sonner'
+import { useAuth } from '../../hooks/useAuth'
 
 export default function AdminLogin() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
-  const navigate = useNavigate()
+  const { login, loading: isLoading } = useAuth()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setIsLoading(true)
-
+    
     try {
-      // Simulação de login - será substituído por integração com Supabase
-      if (email === 'admin@aciei.com.br' && password === 'admin123') {
-        toast.success('Login realizado com sucesso!')
-        navigate('/admin/dashboard')
-      } else {
-        toast.error('Credenciais inválidas')
-      }
+      await login({
+        cpf_cnpj: email,
+        senha: password,
+        tipo_usuario: 'admin'
+      })
     } catch (error) {
-      toast.error('Erro ao realizar login')
-    } finally {
-      setIsLoading(false)
+      console.error('Erro no login:', error)
     }
   }
 

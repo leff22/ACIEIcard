@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test ACIEIcard</title>
+</head>
+<body>
+    <h1>Testando ACIEIcard</h1>
+    <div id="test"></div>
+    <script>
+        document.getElementById('test').innerHTML = `
+            <p>API URL: ${typeof import !== 'undefined' ? import.meta.env?.VITE_API_URL || 'NOT SET' : 'Browser mode'}</p>
+            <p>Production: ${typeof import !== 'undefined' ? import.meta.env?.PROD || 'NOT SET' : 'Browser mode'}</p>
+            <p>Backend Health: <span id="health">Checking...</span></p>
+        `;
+        
+        // Test backend connection
+        fetch('https://acieicard-backend.onrender.com/health')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('health').textContent = JSON.stringify(data);
+            })
+            .catch(error => {
+                document.getElementById('health').textContent = 'Error: ' + error.message;
+            });
+    </script>
+</body>
+</html>
