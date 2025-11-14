@@ -10,9 +10,11 @@ import ConveniadoDashboard from './pages/conveniado/Dashboard'
 import BeneficiarioLogin from './pages/beneficiario/Login'
 import BeneficiarioDashboard from './pages/beneficiario/Dashboard'
 import PagamentoNFC from './pages/beneficiario/PagamentoNFC'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true)
+
   useEffect(() => {
     // Debug inicial
     console.log('🚀 ACIEIcard App iniciado')
@@ -21,7 +23,24 @@ function App() {
       DEV: import.meta.env.DEV,
       VITE_API_URL: import.meta.env.VITE_API_URL
     })
+    
+    // Simular carregamento inicial
+    setTimeout(() => {
+      setIsLoading(false)
+    }, 1000)
   }, [])
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <h2 className="text-2xl font-bold text-blue-600 mb-2">ACIEIcard</h2>
+          <p className="text-gray-600">Carregando sistema...</p>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <>
