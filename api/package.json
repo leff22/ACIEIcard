@@ -2,10 +2,10 @@
   "name": "acieicard-backend",
   "version": "1.0.0",
   "description": "Backend API para ACIEIcard - Sistema de Cartão Empresarial",
-  "main": "server.js",
+  "main": "server-supabase.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "node server.js",
+    "start": "node server-supabase.js",
+    "dev": "node server-supabase.js",
     "build": "npm install"
   },
   "dependencies": {
